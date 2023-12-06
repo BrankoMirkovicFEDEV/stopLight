@@ -1,0 +1,13 @@
+#container{
+    width: 400px;
+    height: 400px;
+    background-color: blue;
+    margin: 50px;
+}
+input{
+    margin-right: 20px;
+}
+
+table, td{
+    border: 2px solid black;
+}
