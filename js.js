@@ -1,59 +1,56 @@
-const colorInputs = document.querySelectorAll(".color");
-const square = document.querySelector("#container");
+const bojeInput = document.querySelectorAll(".boja");
+const kvadrat = document.querySelector("#container");
 
-const startButton = document.querySelector(".start");
-const stopButton = document.querySelector(".stop");
-startButton.addEventListener("click", startTimer);
-stopButton.addEventListener("click", stopTimer);
+const start = document.querySelector(".start");
+const stop = document.querySelector(".stop");
+start.addEventListener("click", pokreniTimer);
+stop.addEventListener("click", zaustaviTimer);
+
 let timer;
+let fleg = 0;
+let brojac = 0;
 
-function random() {
+function slucajan() {
   return Math.floor(Math.random() * 256);
 }
 
-function startTimer() {
-  if (flag == 0)
-    timer = setInterval(changeColor, 1000);
+function pokreniTimer() {
+  if (fleg === 0) timer = setInterval(promeniBoju, 1000);
 }
 
-let flag = 0;
-let counter = 0;
-
-function changeColor() {
-  console.log(colorInputs);
-  flag = 1;
-  if (counter == colorInputs.length) {
-    counter = 0;
+function promeniBoju() {
+  fleg = 1;
+  if (brojac === bojeInput.length) {
+    brojac = 0;
   }
 
-  square.style.backgroundColor = colorInputs[counter++].value;
+  kvadrat.style.backgroundColor = bojeInput[brojac++].value;
 }
 
-function stopTimer() {
+function zaustaviTimer() {
   clearInterval(timer);
-  flag = 0;
+  fleg = 0;
 }
 
-const button = document.querySelector("#showTable");
+const dugme = document.querySelector("#prikaziTabelu");
+const tabela = document.querySelector(".tabela");
+const red = document.querySelector("#red");
+const kolona = document.querySelector("#kolona");
 
-const table = document.querySelector(".table");
-const rowInput = document.querySelector("#row");
-const columnInput = document.querySelector("#column");
+dugme.addEventListener("click", prikaziTabelu);
 
-button.addEventListener("click", showTable);
-
-function showTable() {
-  let numRows = parseInt(rowInput.value);
-  let numColumns = parseInt(columnInput.value);
-  let counter = 1;
-  let output = "<table>";
-  for (let i = 1; i <= numRows; i++) {
-    output += "<tr>"
-    for (let j = 1; j <= numColumns; j++) {
-      output += `<td>${counter++}</td>`;
+function prikaziTabelu() {
+  let brojRedova = parseInt(red.value);
+  let brojKolona = parseInt(kolona.value);
+  let brojac = 1;
+  let ispis = "<table>";
+  for (let i = 1; i <= brojRedova; i++) {
+    ispis += "<tr>";
+    for (let j = 1; j <= brojKolona; j++) {
+      ispis += `<td>${brojac++}</td>`;
     }
-    output += "</tr>"
+    ispis += "</tr>";
   }
-  output += "</table>";
-  table.innerHTML = output;
+  ispis += "</table>";
+  tabela.innerHTML = ispis;
 }
